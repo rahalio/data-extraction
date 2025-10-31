@@ -1,3 +1,127 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ===================================================================
+# DATA FILES - NEVER COMMIT PERSONAL OR COMPANY DATA
+# ===================================================================
+
+# All data file formats
+*.csv
+*.json
+*.xlsx
+*.xls
+*.xlsm
+*.txt
+*.tsv
+*.parquet
+*.avro
+*.orc
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+
+# Combined/processed data files
+combined*.json
+combined*.csv
+merged*.*
+output*.*
+processed*.*
+extracted*.*
+companies*.*
+contacts*.*
+
+# Data directories
+data/
+raw_data/
+processed_data/
+output/
+outputs/
+exports/
+extracts/
+downloads/
+temp_data/
+tmp/
+staging/
+
+# LinkedIn specific exports
+*linkedin*.csv
+*linkedin*.json
+*salesnav*.csv
+*salesnav*.json
+*sales-nav*.csv
+*sales-nav*.json
+
+# Apollo.io exports
+*apollo*.csv
+*apollo*.json
+
+# Common naming patterns
+*_export*.*
+*_extract*.*
+*_data*.*
+*_backup*.*
+sample_data/
+test_data/
+!examples/*_sample.json
+!tests/*_test.json
+
+# Archive files that may contain data
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.bz2
+
+# Allow configuration files
+!package.json
+!tsconfig.json
+!config.json
+!.eslintrc.json
+!jest.config.json
+
 # Logs
 logs
 *.log
@@ -97,6 +221,7 @@ dist
 
 # Sveltekit cache directory
 .svelte-kit/
+
 
 # vitepress build output
 **/.vitepress/dist
