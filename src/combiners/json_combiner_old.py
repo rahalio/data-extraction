@@ -96,95 +96,54 @@ def combine_json_files(
         files_processed = 0
         files_skipped = 0
         errors = []
-        total_size = 0
 
         progress = ProgressBar(len(json_files), prefix="Combining files")
 
         for json_file in json_files:
             try:
                 data = safe_read_json(json_file)
-
-                # Track file size
-                total_size += json_file.stat().st_size
-
-                # Add data to combined list
                 if isinstance(data, list):
                     combined_data.extend(data)
-                    logger.debug(f"Added {len(data)} records from {json_file.name}")
                 else:
                     combined_data.append(data)
-                    logger.debug(f"Added 1 record from {json_file.name}")
-
                 files_processed += 1
+        except json.JSONDecodeError as e:
+            error_msg = f"Error reading {file_name}: {e}"
+            errors.append(error_msg)
+            print(f"⚠️ {error_msg}")
+            files_skipped += 1
+        except Exception as e:
+            error_msg = f"Unexpected error with {file_name}: {e}"
+            errors.append(error_msg)
+            print(f"⚠️ {error_msg}")
+            files_skipped += 1
 
-            except FileHandlingError as e:
-                error_msg = f"Error reading {json_file.name}: {e}"
-                errors.append(error_msg)
-                logger.warning(error_msg)
-                files_skipped += 1
-            except Exception as e:
-                error_msg = f"Unexpected error with {json_file.name}: {e}"
-                errors.append(error_msg)
-                logger.error(error_msg)
-                files_skipped += 1
-            finally:
-                progress.update()
+    # Write the combined JSON file
+    output_path = input_path / output_file
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(combined_data, f, indent=4, ensure_ascii=False)
 
-        progress.finish()
+    result = {
+        "files_processed": files_processed,
+        "files_skipped": files_skipped,
+        "total_records": len(combined_data),
+        "output_file": str(output_path),
+        "errors": errors
+    }
 
-        if files_processed == 0:
-            raise JSONCombinerError("No files were successfully processed")
+    print(f"✅ Combined {files_processed} files into {output_file}")
+    print(f"📊 Total records: {len(combined_data)}")
+    if files_skipped > 0:
+        print(f"⚠️ Skipped {files_skipped} files due to errors")
 
-        # Write combined output
-        logger.info(f"💾 Writing combined data to {output_path.name}...")
-        safe_write_json(combined_data, output_path, indent=4, backup=False)
-
-        # Calculate statistics
-        duration = time.time() - start_time
-        output_size = output_path.stat().st_size
-
-        result = {
-            "files_processed": files_processed,
-            "files_skipped": files_skipped,
-            "total_records": len(combined_data),
-            "input_size": format_file_size(total_size),
-            "output_size": format_file_size(output_size),
-            "output_file": str(output_path),
-            "duration": f"{duration:.2f}s",
-            "errors": errors
-        }
-
-        # Log summary
-        log_operation_summary(logger, "JSON Combination", result, duration)
-
-        return result
-
-    except FileHandlingError as e:
-        logger.error(f"File handling error: {e}")
-        raise JSONCombinerError(f"File handling error: {e}")
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        raise JSONCombinerError(f"Unexpected error: {e}")
+    return result
 
 
-def main():
-    """Main entry point for command-line usage"""
+if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Combine multiple JSON files into a single JSON file",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Combine all JSON files in current directory
-  python json_combiner.py
-
-  # Combine files from specific directory
-  python json_combiner.py --input-dir ./data --output combined.json
-
-  # Use custom pattern
-  python json_combiner.py --pattern "export_*.json" --verbose
-        """
+        description="Combine multiple JSON files into a single JSON file"
     )
     parser.add_argument(
         "--input-dir",
@@ -201,30 +160,6 @@ Examples:
         default="*.json",
         help="Glob pattern for matching files (default: *.json)"
     )
-    parser.add_argument(
-        "--verbose",
-        "-v",
-        action="store_true",
-        help="Enable verbose output"
-    )
 
     args = parser.parse_args()
-
-    try:
-        result = combine_json_files(
-            args.input_dir,
-            args.output,
-            args.pattern,
-            args.verbose
-        )
-        sys.exit(0)
-    except JSONCombinerError as e:
-        logger.error(f"❌ Failed to combine files: {e}")
-        sys.exit(1)
-    except KeyboardInterrupt:
-        logger.warning("\n⚠️ Operation cancelled by user")
-        sys.exit(130)
-
-
-if __name__ == "__main__":
-    main()
+    combine_json_files(args.input_dir, args.output, args.pattern)

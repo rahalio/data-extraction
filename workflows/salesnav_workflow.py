@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from combiners.json_combiner import combine_json_files
-from converters.linkedin_json_to_csv import convert_json_to_csv
+from converters.linkedin_json_to_csv_enhanced import convert_json_to_csv as convert_json_to_csv_enhanced
 
 
 def salesnav_workflow(input_dir: str, output_dir: str = None, keep_combined: bool = False):
@@ -64,7 +64,7 @@ def salesnav_workflow(input_dir: str, output_dir: str = None, keep_combined: boo
     print("-" * 70)
 
     csv_file = "linkedin_companies.csv"
-    convert_result = convert_json_to_csv(
+    convert_result = convert_json_to_csv_enhanced(
         input_pattern=combined_file,
         output_file=str(output_path / csv_file),
         input_dir=str(input_path)

@@ -1,33 +1,49 @@
 # Data Extraction Tools
 
-A Python toolkit for data manipulation, conversion, and combination. Designed for efficient data processing workflows.
+A comprehensive Python library for data manipulation, conversion, and combination. Built with best practices including robust error handling, progress tracking, and comprehensive logging.
+
+## ✨ Key Features
+
+- 🔄 **Smart Data Combining** - Merge multiple JSON files with validation and error recovery
+- 📊 **Format Conversion** - Convert LinkedIn Sales Navigator data to CSV
+- 🛡️ **Robust Error Handling** - Comprehensive error catching and recovery
+- 📝 **Rich Logging** - Detailed operation logs with customizable verbosity
+- 📈 **Progress Tracking** - Real-time progress bars for long operations
+- 🔒 **Data Protection** - Built-in .gitignore to prevent accidental data commits
+- 🧪 **Well Tested** - Unit tests for core functionality
+- 📚 **Comprehensive Docs** - Detailed guides and examples
 
 ## 📁 Project Structure
 
 ```
 data-extraction/
-├── src/
-│   ├── combiners/          # Tools for combining multiple files
+├── src/                    # Core library
+│   ├── combiners/         # JSON file combining tools
 │   │   └── json_combiner.py
-│   ├── converters/         # Tools for format conversion
-│   │   └── linkedin_json_to_csv.py
-│   └── utils/              # Utility functions
-├── workflows/              # Pre-built workflows
+│   ├── converters/        # Format conversion tools
+│   │   ├── linkedin_json_to_csv.py
+│   │   └── linkedin_json_to_csv_enhanced.py
+│   └── utils/             # Utility functions
+│       ├── file_utils.py       # File handling utilities
+│       ├── logging_utils.py    # Logging setup and helpers
+│       └── progress_utils.py   # Progress bars and spinners
+├── workflows/             # Pre-built complete workflows
 │   └── salesnav_workflow.py
-├── examples/               # Example usage and scripts
-├── docs/                   # Documentation and guides
+├── examples/              # Usage examples
+│   └── usage_examples.py
+├── docs/                  # Documentation
 │   └── SALESNAV_GUIDE.md
-├── tests/                  # Unit tests
-├── requirements.txt        # Python dependencies
-└── README.md
+├── tests/                 # Unit tests
+└── requirements.txt       # Dependencies (none - stdlib only!)
 ```
 
-## 🚀 Features
+## 🚀 Core Features
 
 ### Combiners
 
-- **JSON Combiner**: Merge multiple JSON files into a single file
+- **JSON Combiner**: Intelligently merge multiple JSON files
   - Supports both list and object JSON formats
+  - Automatic error detection and recovery
   - Handles nested data structures
   - Error handling for malformed JSON
 
