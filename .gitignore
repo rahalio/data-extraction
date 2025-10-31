@@ -73,8 +73,16 @@ extracted*.*
 companies*.*
 contacts*.*
 
-# Data directories
-data/
+# Data directories (ignore all real data)
+data/raw/
+data/processed/
+data/exports/
+data/temp/
+data/**/
+!data/sample/
+!data/sample/**/*
+!data/README.md
+
 raw_data/
 processed_data/
 output/

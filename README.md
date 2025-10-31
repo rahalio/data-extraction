@@ -19,21 +19,22 @@ A comprehensive Python library for data manipulation, conversion, and combinatio
 data-extraction/
 ├── src/                    # Core library
 │   ├── combiners/         # JSON file combining tools
-│   │   └── json_combiner.py
+│   │   └── json_merger.py
 │   ├── converters/        # Format conversion tools
-│   │   ├── linkedin_json_to_csv.py
-│   │   └── linkedin_json_to_csv_enhanced.py
+│   │   ├── linkedin_to_csv.py
+│   │   └── linkedin_to_csv_enhanced.py
 │   └── utils/             # Utility functions
 │       ├── file_utils.py       # File handling utilities
 │       ├── logging_utils.py    # Logging setup and helpers
 │       └── progress_utils.py   # Progress bars and spinners
 ├── workflows/             # Pre-built complete workflows
-│   └── salesnav_workflow.py
+│   └── linkedin_salesnav_pipeline.py
 ├── examples/              # Usage examples
-│   └── usage_examples.py
+│   └── example_usage.py
 ├── docs/                  # Documentation
-│   └── SALESNAV_GUIDE.md
+│   └── LINKEDIN_SALESNAV_GUIDE.md
 ├── tests/                 # Unit tests
+│   └── test_suite.py
 └── requirements.txt       # Dependencies (none - stdlib only!)
 ```
 
@@ -74,12 +75,12 @@ The easiest way to process LinkedIn Sales Navigator exports:
 
 ```bash
 # Process all JSON files and create a CSV
-python workflows/salesnav_workflow.py \
+python workflows/linkedin_salesnav_pipeline.py \
     --input-dir /path/to/json/files \
     --output-dir ./output
 ```
 
-See the complete [LinkedIn Sales Navigator Guide](docs/SALESNAV_GUIDE.md) for detailed instructions.
+See the complete [LinkedIn Sales Navigator Guide](docs/LINKEDIN_SALESNAV_GUIDE.md) for detailed instructions.
 
 ### As a Python Module
 
@@ -104,37 +105,47 @@ result = convert_json_to_csv(
 
 ### As Command-Line Tools
 
-#### JSON Combiner
+#### JSON Merger
 
 ```bash
-python src/combiners/json_combiner.py \
+python src/combiners/json_merger.py \
     --input-dir ./data \
     --output combined.json \
-    --pattern "*.json"
+    --pattern "*.json" \
+    --verbose
 ```
 
 #### LinkedIn JSON to CSV Converter
 
 ```bash
-python src/converters/linkedin_json_to_csv.py \
+python src/converters/linkedin_to_csv_enhanced.py \
     --pattern "*.json" \
     --output companies.csv \
-    --input-dir ./data
+    --input-dir ./data \
+    --verbose
 ```
 
 ## 📋 Command-Line Options
 
-### JSON Combiner
+### JSON Merger
 
 - `--input-dir`: Directory containing JSON files (default: current directory)
 - `--output`: Output filename (default: combined.json)
 - `--pattern`: Glob pattern for matching files (default: \*.json)
+- `--verbose`, `-v`: Enable verbose output with progress tracking
 
 ### LinkedIn JSON to CSV
 
 - `--pattern`: Glob pattern for input JSON files (default: \*.json)
 - `--output`: Output CSV filename (default: companies.csv)
 - `--input-dir`: Directory containing JSON files (default: current directory)
+- `--verbose`, `-v`: Enable verbose output with progress tracking
+
+### LinkedIn Sales Navigator Pipeline
+
+- `--input-dir`: Directory containing JSON export files (required)
+- `--output-dir`: Directory for output files (default: same as input-dir)
+- `--keep-combined`: Keep the intermediate combined.json file
 
 ## 🔧 Requirements
 

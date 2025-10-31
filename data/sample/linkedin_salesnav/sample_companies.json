@@ -1,0 +1,72 @@
+[
+    {
+        "companyName": "Sample Tech Company",
+        "industry": "Information Technology",
+        "employeeCountRange": "201-500 employees",
+        "employeeDisplayCount": "350",
+        "listCount": 1,
+        "saved": true,
+        "entityUrn": "urn:li:fs_salesCompany:12345",
+        "$recipeType": "com.linkedin.sales.deco.desktop.searchv2.AccountSearchResult",
+        "trackingId": "sample-tracking-id-123",
+        "description": "Sample technology company focused on innovative solutions.",
+        "companyPictureDisplayImage": {
+            "rootUrl": "https://media.licdn.com/dms/image/",
+            "artifacts": [
+                {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "sample-logo-100.png"
+                },
+                {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "sample-logo-200.png"
+                },
+                {
+                    "width": 400,
+                    "fileIdentifyingUrlPathSegment": "sample-logo-400.png"
+                }
+            ]
+        },
+        "spotlightBadges": [
+            {
+                "id": "GROWTH",
+                "displayValue": "Fast Growing"
+            }
+        ]
+    },
+    {
+        "companyName": "Example Financial Services",
+        "industry": "Financial Services",
+        "employeeCountRange": "51-200 employees",
+        "employeeDisplayCount": "125",
+        "listCount": 2,
+        "saved": false,
+        "entityUrn": "urn:li:fs_salesCompany:67890",
+        "$recipeType": "com.linkedin.sales.deco.desktop.searchv2.AccountSearchResult",
+        "trackingId": "sample-tracking-id-456",
+        "description": "Leading financial services provider with global reach.",
+        "companyPictureDisplayImage": {
+            "rootUrl": "https://media.licdn.com/dms/image/",
+            "artifacts": [
+                {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "example-logo-100.png"
+                },
+                {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "example-logo-200.png"
+                }
+            ]
+        },
+        "spotlightBadges": [
+            {
+                "id": "HIRING",
+                "displayValue": "Actively Hiring"
+            },
+            {
+                "id": "FEATURED",
+                "displayValue": "Featured Company"
+            }
+        ]
+    }
+]

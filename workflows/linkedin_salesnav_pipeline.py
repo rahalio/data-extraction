@@ -16,8 +16,8 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from combiners.json_combiner import combine_json_files
-from converters.linkedin_json_to_csv_enhanced import convert_json_to_csv as convert_json_to_csv_enhanced
+from combiners.json_merger import combine_json_files
+from converters.linkedin_to_csv_enhanced import convert_json_to_csv as convert_json_to_csv_enhanced
 
 
 def salesnav_workflow(input_dir: str, output_dir: str = None, keep_combined: bool = False):

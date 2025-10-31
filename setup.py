@@ -35,8 +35,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "json-combiner=src.combiners.json_combiner:main",
-            "linkedin-to-csv=src.converters.linkedin_json_to_csv:main",
+            "json-merger=src.combiners.json_merger:main",
+            "linkedin-to-csv=src.converters.linkedin_to_csv:main",
         ],
     },
     keywords="data extraction json csv conversion linkedin",

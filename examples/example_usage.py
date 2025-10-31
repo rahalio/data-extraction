@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 # Import main functions
 from combiners import combine_json_files
-from converters import convert_linkedin_json_to_csv_enhanced
+from converters import convert_json_to_csv_enhanced
 
 # Import utilities
 from utils import (
@@ -66,7 +66,7 @@ def example_2_linkedin_to_csv():
 
     # Convert LinkedIn Sales Navigator data
     try:
-        result = convert_linkedin_json_to_csv_enhanced(
+        result = convert_json_to_csv_enhanced(
             input_pattern="*.json",
             output_file="linkedin_companies.csv",
             input_dir="./sample_data"
@@ -146,7 +146,7 @@ def example_4_complete_workflow():
 
         # Step 3: Convert to CSV
         logger.info("Step 2/2: Converting to CSV...")
-        convert_result = convert_linkedin_json_to_csv_enhanced(
+        convert_result = convert_json_to_csv_enhanced(
             input_pattern="combined.json",
             output_file=f"{output_dir}/companies.csv",
             input_dir=input_dir
