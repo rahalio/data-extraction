@@ -341,7 +341,7 @@ def convert_json_to_csv(
 
         progress.update(i + 1)
 
-    progress.complete()
+    progress.finish()
 
     # Write CSV file
     try:
@@ -377,6 +377,7 @@ def convert_json_to_csv(
 
     # Log summary
     log_operation_summary(
+        logger=logger,
         operation="LinkedIn JSON to CSV Conversion",
         stats=result,
         duration=0  # TODO: Add timing

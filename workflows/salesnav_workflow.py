@@ -35,6 +35,9 @@ def salesnav_workflow(input_dir: str, output_dir: str = None, keep_combined: boo
     input_path = Path(input_dir).resolve()
     output_path = Path(output_dir).resolve() if output_dir else input_path
 
+    # Create output directory if it doesn't exist
+    output_path.mkdir(parents=True, exist_ok=True)
+
     print("=" * 70)
     print("LinkedIn Sales Navigator Data Extraction Workflow")
     print("=" * 70)
